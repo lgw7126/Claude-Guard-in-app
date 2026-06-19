@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+import BookingModal from "@/components/BookingModal";
 
 export interface Expert {
   id: number;
@@ -18,6 +20,7 @@ interface Props {
   expert: Expert;
   onBack: () => void;
 }
+
 
 const mockReviews = [
   {
@@ -41,6 +44,8 @@ const mockReviews = [
 ];
 
 export default function ExpertDetail({ expert, onBack }: Props) {
+  const [showBooking, setShowBooking] = useState(false);
+
   return (
     <div className="flex flex-col">
       {/* Nav bar */}
@@ -151,11 +156,18 @@ export default function ExpertDetail({ expert, onBack }: Props) {
           <button className="flex-1 bg-[#1E1E1E] border border-[#2A2A2A] rounded-2xl py-4 text-white text-sm font-medium transition-all active:scale-95 min-h-[56px]">
             📞 문의하기
           </button>
-          <button className="flex-[2] bg-[#7AA884] rounded-2xl py-4 text-[#121212] text-sm font-bold transition-all active:scale-95 min-h-[56px]">
+          <button
+            onClick={() => setShowBooking(true)}
+            className="flex-[2] bg-[#7AA884] rounded-2xl py-4 text-[#121212] text-sm font-bold transition-all active:scale-95 min-h-[56px]"
+          >
             {expert.availableNow ? "즉시 예약하기" : "예약 문의하기"}
           </button>
         </div>
       </div>
+
+      {showBooking && (
+        <BookingModal expert={expert} onClose={() => setShowBooking(false)} />
+      )}
     </div>
   );
 }

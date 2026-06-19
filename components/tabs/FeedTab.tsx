@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import NewPostModal from "@/components/NewPostModal";
 
 type Tag = "안전" | "제보" | "정보" | "후기";
 
@@ -81,9 +82,28 @@ const INITIAL_POSTS: Post[] = [
 type Filter = "전체" | Tag;
 const FILTERS: Filter[] = ["전체", "제보", "후기", "정보", "안전"];
 
+let nextPostId = INITIAL_POSTS.length + 1;
+
 export default function FeedTab() {
   const [posts, setPosts] = useState(INITIAL_POSTS);
   const [activeFilter, setActiveFilter] = useState<Filter>("전체");
+  const [showNewPost, setShowNewPost] = useState(false);
+
+  const handleNewPost = (content: string, tag: Tag) => {
+    const newPost: Post = {
+      id: nextPostId++,
+      user: "나 (역삼동)",
+      avatarChar: "나",
+      location: "역삼동",
+      time: "방금",
+      content,
+      likes: 0,
+      comments: 0,
+      tag,
+      liked: false,
+    };
+    setPosts((prev) => [newPost, ...prev]);
+  };
 
   const toggleLike = (id: number) => {
     setPosts((prev) =>
@@ -234,6 +254,25 @@ export default function FeedTab() {
           </div>
         ))}
       </div>
+
+      {/* Floating write button — clipped to the max-w-md container */}
+      <button
+        onClick={() => setShowNewPost(true)}
+        className="fixed bottom-24 w-14 h-14 bg-[#7AA884] rounded-full flex items-center justify-center shadow-lg shadow-[#7AA884]/20 transition-all active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#7AA884]/30 z-30"
+        aria-label="새 게시물 작성"
+        style={{ right: "max(1rem, calc(50vw - 208px))" }}
+      >
+        <svg className="w-6 h-6 text-[#121212]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+        </svg>
+      </button>
+
+      {showNewPost && (
+        <NewPostModal
+          onClose={() => setShowNewPost(false)}
+          onSubmit={handleNewPost}
+        />
+      )}
     </div>
   );
 }
