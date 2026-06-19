@@ -4,7 +4,7 @@ import type { ServiceType, AppFlowState } from "@/types";
 
 interface Props {
   service: ServiceType;
-  flowState: Exclude<AppFlowState, "idle" | "sheet">;
+  flowState: Exclude<AppFlowState, "idle">;
   onComplete: () => void;
   onEscalate: () => void;
   onClose: () => void;
