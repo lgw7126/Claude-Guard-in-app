@@ -43,4 +43,3 @@ UX와 서비스 구조를 검증하기 위한 프론트엔드 MVP. 전문가 데
 
 ---
 
-*Made with Claude Code · 2026*<img width="386" height="665" alt="스크린샷 2026-07-17 110159" src="https://github.com/user-attachments/assets/f2b44f0c-825a-47ef-9fed-71cdbc22e902" />
