@@ -6,7 +6,8 @@
 
 > 1인 여성 가구를 위한 하이퍼로컬 안전망 플랫폼 — 긴급 SOS, 이웃 안전 피드, 검증된 전문가 매칭을 한 앱에
 
-<img width="400" alt="Guard-In 메인 화면" src="스크린샷_주소_여기에">
+<img width="386" height="665" alt="스크린샷 2026-07-17 110159" src="https://github.com/user-attachments/assets/b5028daf-5809-4f21-851e-b7c57cb78283" />
+
 
 ---
 
